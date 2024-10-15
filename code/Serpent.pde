@@ -42,6 +42,19 @@ public class Serpent
     }
   }
   
+  public boolean eatFruit(PowerFruit fruit){
+    if(fruit.x == x && fruit.y == y)
+    {
+      Powerup pu = new Powerup();
+      serpentLength += 6;
+      return true;
+    }
+    else
+    {
+      return false;
+    }
+  }
+  
   public boolean isDead()
   {
     if (x < 0 || x >= width || y < 0 || y >= height)
