@@ -5,14 +5,16 @@ boolean isBeginning;
 
 Serpent serpent;
 Apple apple;
+PowerFruit pFruit;
 boolean isDead;
-int score;
+public int score;
+int appleCounter; // counts the apples for powerup
 
 public void setup() 
 {
   size(800, 800);
   reset();
-  noStroke(); //<>//
+  noStroke();
   frameRate(20);
 }
 
@@ -24,6 +26,7 @@ public void draw()
     isDead = serpent.isDead();
   }
   
+  
   apple.drawMe();
   serpent.drawMe();
   serpent.slither();
@@ -32,16 +35,28 @@ public void draw()
   {
     score += 3;
     apple.spawnApple(serpent);
-  } //<>//
+    appleCounter++;
+  }
+  
+  if(appleCounter >=2){
+    pFruit.drawMe();
+    if(serpent.eatFruit(pFruit)){
+      score += 6;
+      pFruit.spawnFruit(serpent);
+      appleCounter = 0;
+      }
+  }
   
   displayInstruction();
 }
 
 public void reset()
 {
+  appleCounter = 0;
   score = 0;
   serpent = new Serpent();
   apple = new Apple(serpent);
+  pFruit = new PowerFruit(serpent);
   isDead = false;
   isBeginning = true;
 }
