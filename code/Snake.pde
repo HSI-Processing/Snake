@@ -59,6 +59,7 @@ public void reset()
   pFruit = new PowerFruit(serpent);
   isDead = false;
   isBeginning = true;
+  frameRate(20);
 }
 
 public void keyPressed() 
